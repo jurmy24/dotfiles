@@ -1,25 +1,11 @@
 # Dotfiles
 
-Minimal personal dotfiles.
+One directory per machine, each fully self-contained. Configs are duplicated rather than shared, so changing one machine never breaks the other.
 
-## Files
+- [`macos/`](macos/README.md) — MacBook
+- [`linux/`](linux/README.md) — Ubuntu 24.04 PC
 
-- `.zshrc` - Oh My Zsh setup, including zoxide.
-- `.config/lazygit/config.yml` - Lazygit config.
-- `.config/tmux/.tmux.conf` - Tmux config.
+Both follow the same shape:
 
-## Zoxide
-
-Use `z <query>` to jump to a frequently used directory, and `zi <query>` to choose interactively with fzf.
-
-## Restore
-
-For now, copy files manually as needed.
-
-If this repo later uses GNU Stow:
-
-```sh
-brew install stow
-cd ~/Documents/Hack/dotfiles
-stow -t ~ .
-```
+    <os>/home/        mirrors $HOME; deploy with GNU Stow
+    <os>/mx-console/  Logitech MX Creative Console + Bitfocus Companion setup

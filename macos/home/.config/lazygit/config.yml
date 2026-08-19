@@ -1,0 +1,37 @@
+git:
+  merging:
+    args: "--no-ff"
+os:
+  editPreset: "vscode"
+promptToReturnFromSubprocess: false # removes "press enter to return to lazygit" popup
+customCommands:
+  - key: "c"
+    context: "files"
+    prompts:
+      - type: "menu"
+        title: "Select Commit Type"
+        key: "type"
+        options:
+          - name: "feat ✨"
+            value: "✨"
+          - name: "ui 🎨"
+            value: "🎨"
+          - name: "fix 🐛"
+            value: "🐛"
+          - name: "docs 📝"
+            value: "📝"
+          - name: "refactor ♻️"
+            value: "♻️"
+          - name: "misc 🧩"
+            value: "🧩"
+          - name: "test ✅"
+            value: "✅"
+          - name: "chore 🔧"
+            value: "🔧"
+      - type: "input"
+        title: "Commit Message"
+        key: "msg"
+    command: "git commit -m '{{.Form.type}} {{.Form.msg}}'"
+    loadingText: "Committing..."
+    description: "Commit with emoji + type prefix"
+    output: terminal

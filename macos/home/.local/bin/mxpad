@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# mxpad — dispatcher for Logitech MX Creative Console buttons (Bitfocus Companion), macOS edition
+# Each Companion button runs:  /Users/YOU/.local/bin/mxpad <action>
+# Companion needs Accessibility permission for the keystroke actions; see ../../mx-console/SETUP.md
+set -u
+
+key() { osascript -e "tell application \"System Events\" to $1"; }
+
+term() { # run a command in a new Terminal window   # EDIT: adapt if you use iTerm/Ghostty
+  osascript -e "tell application \"Terminal\" to do script \"$1\"" \
+            -e 'tell application "Terminal" to activate' >/dev/null
+}
+
+case "${1:-}" in
+  # ================= PAGE 1 — shortcuts & AI =================
+  btop)        term btop ;;
+  terminal)    open -a Terminal ;;
+  fullscreen)  key 'keystroke "f" using {control down, command down}' ;;   # Ctrl+Cmd+F, native fullscreen toggle
+  cursor)      open -a Cursor ;;
+  screenshot)  key 'key code 21 using {shift down, command down}' ;;       # Cmd+Shift+4, region select
+  lazygit)     term "cd \\\"$HOME\\\" && lazygit" ;;   # EDIT: your main repo path
+  claude-code) term claude ;;
+  voice)       pkill -USR2 -x handy ;;   # VERIFY on mac; fallback: bind a Handy global shortcut, press it via key()
+  accept)      key 'key code 36' ;;      # Return to focused window
+
+  # ================= PAGE 2 — desktop & media =================
+  ws-left)     key 'key code 123 using control down' ;;   # Ctrl+Left  = previous Space
+  ws-right)    key 'key code 124 using control down' ;;   # Ctrl+Right = next Space
+  claude)      open -a Claude ;;
+  pause)       osascript -e 'tell application "Spotify" to playpause' ;;
+  next)        osascript -e 'tell application "Spotify" to next track' ;;
+  spotify)     open -a Spotify ;;
+  vivaldi)     open -a Vivaldi ;;
+  vivaldi-ws)  open -a Vivaldi; sleep 0.25
+               key 'keystroke "." using control down' ;;   # Ctrl+. -> "Next Workspace" (bind in Vivaldi)
+  youtube)     open -a Vivaldi "https://www.youtube.com" ;;
+
+  *) echo "unknown action: ${1:-}" >&2; exit 1 ;;
+esac
