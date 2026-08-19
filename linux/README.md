@@ -26,6 +26,10 @@ curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh 
 
 It lands in `~/.local/bin`, which `.bashrc` already puts on PATH. `zi` needs fzf 0.51+, newer than apt's; get it from https://github.com/junegunn/fzf/releases if wanted.
 
+## GRUB
+
+Dual-boot menu (Ubuntu + Windows) with the Catppuccin Mocha theme, HiDPI-tweaked. Config and theme live in [`grub/`](grub/SETUP.md); these are system files, so they're copied with sudo rather than stowed.
+
 ## MX Creative Console
 
 The full fresh-machine runbook is [`mx-console/REPLICATION.md`](mx-console/REPLICATION.md): packages, ydotool from source, GNOME extension, Companion, and the button layout. The `home/` files above only cover the dispatcher and daemon.

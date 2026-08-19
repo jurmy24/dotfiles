@@ -1,0 +1,66 @@
+# GRUB2 gfxmenu pop theme, based and inspired by Vimix and Dracula grub themes
+# Stock catppuccin-mocha layout for a 1920x1080 framebuffer on a 4K panel.
+# The framebuffer is kept at 1080p because GRUB redraws through the firmware's
+# unaccelerated framebuffer; at 4K every keypress waited on a ~33MB redraw,
+# which is what made menu navigation lag. The panel upscales 2x, so these
+# sizes appear the same as 24px text did at 4K.
+#
+# Deviations from stock, and why:
+#   font 16 -> 12        appears as 24 on the 4K panel (the approved size)
+#   logo 100 -> 76       appears as ~150; from the 256px master, still sharp
+#   icons 32 -> 24       appears as 48; rendered from vector
+#   item_height 36 -> 28 fits the 24px icons with 12px text
+#   width 480 -> 400     widest label (submenu recovery entry) is 364px with
+#                        icon; stock 480 would also fit but 400 hugs tighter
+#   height 30% (stock)   324px at 1080p = room for 9 entries, so all 4 show
+
+# Global Property
+title-text: ""
+desktop-image: "background.png"
+desktop-image-scale-method: "stretch"
+desktop-color: "#1E1E2E"
+terminal-font: "DejaVu Sans Regular 12"
+terminal-left: "0"
+terminal-top: "0"
+terminal-width: "100%"
+terminal-height: "100%"
+terminal-border: "0"
+
+# Logo image
++ image {
+	left = 50%-38
+	top = 50%-38
+	w = 76
+	h = 76
+	file = "logo.png"
+}
+
+# Show the boot menu
++ boot_menu {
+  left = 50%-200
+  top = 60%
+  width = 400
+  height = 30%
+  item_font = "DejaVu Sans Regular 12"
+  item_color = "#CDD6F4"
+  selected_item_color = "#CDD6F4"
+  icon_width = 24
+  icon_height = 24
+  item_icon_space = 12
+  item_height = 28
+  item_padding = 3
+  item_spacing = 6
+  selected_item_pixmap_style = "select_*.png"
+}
+
+# Show a countdown message using the label component
++ label {
+  top = 82%
+  left = 35%
+  width = 30%
+  align = "center"
+  id = "__timeout__"
+  font = "DejaVu Sans Regular 12"
+  text = "Booting in %d seconds"
+  color = "#CDD6F4"
+}
