@@ -39,6 +39,7 @@ Each of these cost real debugging time; read them before typing anything.
 ```bash
 sudo apt update
 sudo apt install playerctl cmake build-essential scdoc git gnome-shell-extension-manager
+sudo snap install ghostty --classic   # terminal used by the btop/terminal/lazygit/claude-code buttons
 ```
 
 No ydotool here on purpose (trap 1). If it's already installed: `sudo apt remove ydotool`.
@@ -206,15 +207,15 @@ launch() { setsid -f "$@" >/dev/null 2>&1; }
 
 case "${1:-}" in
   # ================= PAGE 1 — shortcuts & AI =================
-  btop)        launch gnome-terminal --window --title=btop -- btop ;;
-  terminal)    launch gnome-terminal --tab ;;   # tab in last-used terminal window; new window if none
+  btop)        launch /snap/bin/ghostty --title=btop -e btop ;;
+  terminal)    launch /snap/bin/ghostty ;;   # new window; absolute snap path, Companion's shell has no user PATH
   fullscreen)  ydotool key 29:1 125:1 33:1 33:0 125:0 29:0 ;;   # Ctrl+Super+F -> GNOME toggle-fullscreen
   cursor)      focus activateByWmClass "Cursor" || launch cursor ;;   # EDIT: AppImage path if needed
   screenshot)  ydotool key 99:1 99:0 ;;   # Print -> GNOME screenshot UI (region mode is sticky default)
-  lazygit)     launch gnome-terminal --window --title=lazygit \
-                 --working-directory="$HOME" -- lazygit ;;   # EDIT: your main repo path
+  lazygit)     launch /snap/bin/ghostty --title=lazygit \
+                 --working-directory="$HOME" -e lazygit ;;   # EDIT: your main repo path
   claude-code) focus activateBySubstring "claude" || \
-                 launch gnome-terminal --window --title="Claude Code" -- bash -ic claude ;;
+                 launch /snap/bin/ghostty --title="Claude Code" -e bash -ic claude ;;
   voice)       pkill -USR2 -x handy ;;   # toggle Handy recording; -USR1 for post-processed mode
   accept)      ydotool key 28:1 28:0 ;;   # Enter to focused window
 
