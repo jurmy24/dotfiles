@@ -12,10 +12,33 @@ If a real file already exists where a link should go, `stow --adopt -t ~ home` p
 What gets linked:
 
 - `.bashrc` — Ubuntu default plus ROS, `~/.local/bin` on PATH, zoxide
+- `.zshrc` — zsh (login shell): Starship prompt, fzf + fzf-tab, atuin, autosuggestions, syntax highlighting, zsh-ai, eza/bat aliases, zoxide
+- `.config/starship.toml` — Starship prompt, Catppuccin Mocha
+- `.config/ghostty/config` — Ghostty: Catppuccin Mocha + JetBrainsMono Nerd Font
 - `.config/lazygit/config.yml` — lazygit config
 - `.config/vicinae/settings.json` — Vicinae launcher config
 - `.local/bin/mxpad` — MX Creative Console button dispatcher
 - `.config/systemd/user/ydotoold.service` — keystroke-injection daemon that `mxpad` needs
+
+## Zsh look (Starship + Nerd Font + eza + bat)
+
+The prompt is [Starship](https://starship.rs) themed Catppuccin Mocha to match Ghostty and GRUB. On a fresh machine, install the pieces to `~/.local/bin` (no sudo needed):
+
+```sh
+# JetBrainsMono Nerd Font (prompt glyphs + eza icons)
+mkdir -p ~/.local/share/fonts
+curl -sSfLo /tmp/jbmono.tar.xz https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.tar.xz
+tar -xf /tmp/jbmono.tar.xz -C ~/.local/share/fonts --wildcards 'JetBrainsMonoNerdFont-*.ttf'
+fc-cache -f
+
+# Starship prompt
+curl -sSf https://starship.rs/install.sh | sh -s -- -y -b ~/.local/bin
+
+# eza (pretty ls) and bat (pretty cat) — static binaries from GitHub releases
+# https://github.com/eza-community/eza/releases  |  https://github.com/sharkdp/bat/releases
+```
+
+`.zshrc` degrades gracefully: the eza/bat aliases only activate when the binaries exist.
 
 ## Zoxide
 
