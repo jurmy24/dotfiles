@@ -1,6 +1,6 @@
 # Dotfiles
 
-One directory per machine, each fully self-contained. Configs are duplicated rather than shared, so changing one machine never breaks the other.
+One directory per machine, each fully self-contained. Reflects the config I like on my computer. 
 
 - [`macos/`](macos/README.md) — MacBook
 - [`linux/`](linux/README.md) — Ubuntu 24.04 PC
