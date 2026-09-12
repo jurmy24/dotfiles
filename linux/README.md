@@ -17,6 +17,7 @@ What gets linked:
 - `.config/ghostty/config` — Ghostty: Catppuccin Mocha + JetBrainsMono Nerd Font
 - `.config/lazygit/config.yml` — lazygit config
 - `.config/vicinae/settings.json` — Vicinae launcher config
+- `.config/cheatsheets/*.md` — markdown cheatsheets shown by the [vicinae-cheatsheets](https://github.com/jurmy24/vicinae-cheatsheets) extension (see below)
 - `.local/bin/mxpad` — MX Creative Console button dispatcher
 - `.config/systemd/user/ydotoold.service` — keystroke-injection daemon that `mxpad` needs
 
@@ -65,6 +66,18 @@ systemctl --user restart vicinae
 ```
 
 `npm run build` installs it straight into `~/.local/share/vicinae/extensions/`. This adds a **Pick Color** command (bind it to a shortcut in Vicinae for a one-keystroke eyedropper) and a **Color History** browser.
+
+### Cheatsheets extension
+
+I never remember tmux keys. [vicinae-cheatsheets](https://github.com/jurmy24/vicinae-cheatsheets) adds a **tmux** command to Vicinae that pops a small always-on-top window in the top right corner with the keys, and closes it when run again. The sheets are the markdown files in `home/.config/cheatsheets/`, so new ones are just new files there. Install:
+
+```sh
+git clone git@github.com:jurmy24/vicinae-cheatsheets.git ~/vicinae-cheatsheets
+cd ~/vicinae-cheatsheets && npm install && npm run build
+systemctl --user restart vicinae
+```
+
+The extension reads `~/.config/cheatsheets`, which stow links to `home/.config/cheatsheets/`.
 
 ## GRUB
 
