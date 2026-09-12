@@ -18,6 +18,7 @@ What gets linked:
 - `.config/lazygit/config.yml` — lazygit config
 - `.config/vicinae/settings.json` — Vicinae launcher config
 - `.local/bin/mxpad` — MX Creative Console button dispatcher
+- `.local/share/vicinae/scripts/chief.sh` — Vicinae script command: type `chief` to open the Chief dashboard (needs the chief repo at `~/Documents/hack/chief`)
 - `.config/systemd/user/ydotoold.service` — keystroke-injection daemon that `mxpad` needs
 
 ## Zsh look (Starship + Nerd Font + eza + bat)
@@ -53,6 +54,10 @@ It lands in `~/.local/bin`, which `.bashrc` already puts on PATH. `zi` needs fzf
 ## Vicinae
 
 [Vicinae](https://vicinae.com) is a Raycast-style launcher, running as a systemd user service (`vicinae.service`). Its config is in `home/.config/vicinae/settings.json`.
+
+### Script commands
+
+Plain scripts with `# @vicinae.*` headers in `~/.local/share/vicinae/scripts/` show up in the root search. `chief.sh` opens `chief-dash`, the terminal dashboard from the [chief](https://github.com/jurmy24/chief) repo, in a ghostty window. After adding a script, run the "Reload Script Directories" command (or `vicinae cmd launch core:reload-scripts`).
 
 ### Color picker extension
 
