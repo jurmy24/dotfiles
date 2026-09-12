@@ -17,7 +17,6 @@ What gets linked:
 - `.config/ghostty/config` — Ghostty: Catppuccin Mocha + JetBrainsMono Nerd Font
 - `.config/lazygit/config.yml` — lazygit config
 - `.config/vicinae/settings.json` — Vicinae launcher config
-- `.config/cheatsheets/*.md` — markdown cheatsheets shown by the [vicinae-cheatsheets](https://github.com/jurmy24/vicinae-cheatsheets) extension (see below)
 - `.local/bin/mxpad` — MX Creative Console button dispatcher
 - `.config/systemd/user/ydotoold.service` — keystroke-injection daemon that `mxpad` needs
 
@@ -69,15 +68,13 @@ systemctl --user restart vicinae
 
 ### Cheatsheets extension
 
-I never remember tmux keys. [vicinae-cheatsheets](https://github.com/jurmy24/vicinae-cheatsheets) adds a **tmux** command to Vicinae that pops a small always-on-top window in the top right corner with the keys, and closes it when run again. The sheets are the markdown files in `home/.config/cheatsheets/`, so new ones are just new files there. Install:
+I never remember tmux keys. [vicinae-cheatsheets](https://github.com/jurmy24/vicinae-cheatsheets) (private repo) adds a **tmux** command to Vicinae that pops a small always-on-top window in the top right corner with the keys, and closes it when run again. The sheets themselves live in that repo's `sheets/` folder, and creating one from Vicinae commits and pushes it there, so they are not duplicated here. Install:
 
 ```sh
 git clone git@github.com:jurmy24/vicinae-cheatsheets.git ~/vicinae-cheatsheets
 cd ~/vicinae-cheatsheets && npm install && npm run build
 systemctl --user restart vicinae
 ```
-
-The extension reads `~/.config/cheatsheets`, which stow links to `home/.config/cheatsheets/`.
 
 ## GRUB
 
